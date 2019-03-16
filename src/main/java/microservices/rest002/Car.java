@@ -10,7 +10,6 @@ import javax.persistence.Id;
 @Entity
 @Data
 public class Car {
-
     @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     @Id
     @GeneratedValue
@@ -19,9 +18,11 @@ public class Car {
     private @NonNull String make;
     private @NonNull String color;
 
+    //Constructor
     public Car() {
     }
 
+    //Constructor
     public Car(String licensenumber, String make, String color) {
         this.licensenumber = licensenumber;
         this.make = make;

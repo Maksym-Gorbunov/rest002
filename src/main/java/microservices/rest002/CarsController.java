@@ -14,12 +14,14 @@ public class CarsController {
         this.carRepository = carRepository;
     }
 
+    //Get all cars from H2 database
     @GetMapping("/cars")
     public List<Car> getAllCars(){
         logger.info("Request for all cars.");
         return carRepository.findAll();
     }
 
+    //Add new car to H2 database
     @PostMapping("/cars")
     public boolean addCar(@RequestBody Car car) {
         logger.info("Request for add car");
@@ -31,6 +33,7 @@ public class CarsController {
         }
     }
 
+    //Delete car from H2 database by licensenumber
     @DeleteMapping("/cars/{licensenumber}")
     public int deleteCar(@PathVariable String licensenumber) {
         logger.info("Request for delete car by licensenumber");
@@ -41,6 +44,7 @@ public class CarsController {
         }
     }
 
+    //Find all cars by any field (licensenumber, make, color)
     @GetMapping("/cars/{find}")
     public Car[] findCar(@PathVariable String find) {
         List<Car> cars = new ArrayList<>();
@@ -52,8 +56,9 @@ public class CarsController {
         return cars.toArray(new Car[cars.size()]);
     }
 
+    //Info
     @GetMapping("/help")
     public String help() {
-        return "This service is used for storing and retrieving information about cars.";
+        return "This rest microservice is used for storing and retrieving information about cars in H2 database.";
     }
 }
