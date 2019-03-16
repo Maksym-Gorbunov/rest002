@@ -7,11 +7,32 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestController
-public class CarsController {
-    Logger logger = LoggerFactory.getLogger(CarsController.class);
+public class MyController {
+    Logger logger = LoggerFactory.getLogger(MyController.class);
     private CarRepository carRepository;
-    public CarsController(CarRepository carRepository) {
+//    private UserRepository userRepository;
+
+    //Constructor
+    public MyController(CarRepository carRepository) {
         this.carRepository = carRepository;
+    }
+//    public MyController(CarRepository carRepository, UserRepository userRepository) {
+//        this.carRepository = carRepository;
+//        this.userRepository = userRepository;
+//    }
+
+    //Login
+    @PostMapping("/login")
+    public boolean login(@RequestBody User user) {
+        User admin = new User("user", "123");
+
+        logger.info("Request for login");
+//        if(!userRepository.existsByLogin(user.getLogin())){
+        if(user.equals(admin)){
+            return true;
+        } else{
+            return false;
+        }
     }
 
     //Get all cars from H2 database
